@@ -16,10 +16,10 @@ class Colis
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $NumeroColis = null;
+    private ?string $numeroColis = null;
 
     #[ORM\Column]
-    private ?int $Poids = null;
+    private ?int $poids = null;
 
     #[ORM\ManyToOne(inversedBy: 'lesColis')]
     private ?Commande $laCommande = null;
@@ -43,24 +43,24 @@ class Colis
 
     public function getNumeroColis(): ?string
     {
-        return $this->NumeroColis;
+        return $this->numeroColis;
     }
 
     public function setNumeroColis(string $NumeroColis): static
     {
-        $this->NumeroColis = $NumeroColis;
+        $this->numeroColis = $NumeroColis;
 
         return $this;
     }
 
     public function getPoids(): ?int
     {
-        return $this->Poids;
+        return $this->poids;
     }
 
     public function setPoids(int $Poids): static
     {
-        $this->Poids = $Poids;
+        $this->poids = $Poids;
 
         return $this;
     }

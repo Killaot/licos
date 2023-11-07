@@ -1,27 +1,20 @@
 <template>
-    <h1>{{ greetingMessage }}</h1>
+    <h1>{{ greetingMessage }}</h1>    
+</template>
     
-    </template>
-    <script>
+<script>
     export default {
         name: 'exemple',
-        props: {
-            greetingMessage: {
-                type: String,
-                default: 'gg la team licos'
-            }
-        }
     };
-    </script>
+</script>
     
-    
-    <style>
+<style>
     h1 {
         color: rgb(0, 0, 255);
     }
     h2 {
         color: rgb(255, 0, 0);
     }
-    </style>
+</style>
     
     

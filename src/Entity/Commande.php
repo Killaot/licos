@@ -16,7 +16,7 @@ class Commande
     #[ORM\Column]
     private ?int $NbrColis = null;
 
-    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\ManyToOne(inversedBy: 'laCommandes')]
     private ?Client $leClient = null;
 
     public function getId(): ?int

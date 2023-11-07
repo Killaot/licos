@@ -18,7 +18,7 @@ class Casier
     #[ORM\OneToMany(mappedBy: 'leCasier', targetEntity: Colis::class)]
     private Collection $lesColis;
 
-    #[ORM\ManyToOne(inversedBy: 'lesCasier')]
+    #[ORM\ManyToOne(inversedBy: 'lesCasiers')]
     private ?Relais $leRelais = null;
 
     public function __construct()
