@@ -22,7 +22,7 @@ class Relais
     private ?string $Nom = null;
 
     #[ORM\OneToMany(mappedBy: 'leRelais', targetEntity: Casier::class)]
-    private Collection $lesCasier;
+    private Collection $lesCasiers;
 
     #[ORM\ManyToOne(inversedBy: 'lesRelais')]
     private ?Ville $laVille = null;
@@ -32,7 +32,7 @@ class Relais
 
     public function __construct()
     {
-        $this->lesCasier = new ArrayCollection();
+        $this->lesCasiers = new ArrayCollection();
         $this->lesAdmins = new ArrayCollection();
     }
 
@@ -70,13 +70,13 @@ class Relais
      */
     public function getLesCasier(): Collection
     {
-        return $this->lesCasier;
+        return $this->lesCasiers;
     }
 
     public function addLesCasier(Casier $lesCasier): static
     {
-        if (!$this->lesCasier->contains($lesCasier)) {
-            $this->lesCasier->add($lesCasier);
+        if (!$this->lesCasiers->contains($lesCasier)) {
+            $this->lesCasiers->add($lesCasier);
             $lesCasier->setLeRelais($this);
         }
 
@@ -85,7 +85,7 @@ class Relais
 
     public function removeLesCasier(Casier $lesCasier): static
     {
-        if ($this->lesCasier->removeElement($lesCasier)) {
+        if ($this->lesCasiers->removeElement($lesCasier)) {
             // set the owning side to null (unless already changed)
             if ($lesCasier->getLeRelais() === $this) {
                 $lesCasier->setLeRelais(null);
