@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
+#[ApiResource]
 class Commande
 {
     #[ORM\Id]

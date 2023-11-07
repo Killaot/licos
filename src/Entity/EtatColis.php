@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Repository\EtatColisRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: EtatColisRepository::class)]
+#[ApiResource]
 class EtatColis
 {
     #[ORM\Id]

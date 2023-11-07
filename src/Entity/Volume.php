@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Repository\VolumeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: VolumeRepository::class)]
+#[ApiResource]
 class Volume
 {
     #[ORM\Id]

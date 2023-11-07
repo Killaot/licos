@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231010140215 extends AbstractMigration
+final class Version20231107155245 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -23,11 +23,10 @@ final class Version20231010140215 extends AbstractMigration
         $this->addSql('CREATE TABLE `admin` (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE admin_client (admin_id INT NOT NULL, client_id INT NOT NULL, INDEX IDX_9A8C35AC642B8210 (admin_id), INDEX IDX_9A8C35AC19EB6921 (client_id), PRIMARY KEY(admin_id, client_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE casier (id INT AUTO_INCREMENT NOT NULL, le_relais_id INT DEFAULT NULL, INDEX IDX_3FDF2858259B9D7 (le_relais_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE client (id INT AUTO_INCREMENT NOT NULL, prenom VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, tel VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, mot_de_passe VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE client (id INT AUTO_INCREMENT NOT NULL, prenom VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, telephone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, mot_de_passe VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE colis (id INT AUTO_INCREMENT NOT NULL, la_commande_id INT DEFAULT NULL, le_casier_id INT NOT NULL, numero_colis VARCHAR(255) NOT NULL, poids INT NOT NULL, INDEX IDX_470BDFF93743EDD (la_commande_id), INDEX IDX_470BDFF9BD210531 (le_casier_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE commande (id INT AUTO_INCREMENT NOT NULL, le_client_id INT DEFAULT NULL, nbr_colis INT NOT NULL, INDEX IDX_6EEAA67DC0F37DD6 (le_client_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE etat_colis (id INT AUTO_INCREMENT NOT NULL, etat VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE le_client (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE notification (id INT AUTO_INCREMENT NOT NULL, le_colis_id INT DEFAULT NULL, INDEX IDX_BF5476CA8368A699 (le_colis_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE relais (id INT AUTO_INCREMENT NOT NULL, la_ville_id INT DEFAULT NULL, nombre_casier VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, INDEX IDX_E32CEC90609A8BA5 (la_ville_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE relais_admin (relais_id INT NOT NULL, admin_id INT NOT NULL, INDEX IDX_B334A3085B41AD20 (relais_id), INDEX IDX_B334A308642B8210 (admin_id), PRIMARY KEY(relais_id, admin_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -66,7 +65,6 @@ final class Version20231010140215 extends AbstractMigration
         $this->addSql('DROP TABLE colis');
         $this->addSql('DROP TABLE commande');
         $this->addSql('DROP TABLE etat_colis');
-        $this->addSql('DROP TABLE le_client');
         $this->addSql('DROP TABLE notification');
         $this->addSql('DROP TABLE relais');
         $this->addSql('DROP TABLE relais_admin');

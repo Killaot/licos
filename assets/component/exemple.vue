@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 668f73e9f46ef89fdfc9408cd76822f0ac025ad1
 <template>
     <h1>{{ greetingMessage }}</h1>    
 </template>

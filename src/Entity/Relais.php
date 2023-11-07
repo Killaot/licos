@@ -6,8 +6,10 @@ use App\Repository\RelaisRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: RelaisRepository::class)]
+#[ApiResource]
 class Relais
 {
     #[ORM\Id]
