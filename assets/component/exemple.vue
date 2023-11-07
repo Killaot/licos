@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <template>
     <h1>{{ greetingMessage }}</h1>    
 </template>
@@ -20,4 +18,3 @@
 </style>
     
     
->>>>>>> dc64ceff93e1b2349fe5f90fd7e53417b9c6324b
