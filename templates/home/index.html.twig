@@ -3,7 +3,10 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-
+<a href="{{ path('app_register') }}">Inscription</a>
+<a href="{{ path('app_login') }}">Connexion</a>
+<a href="{{ path('app_logout') }}">Déconexion</a>
+<a href="{{ path('app_forgot_password_request') }}">Mdp reset</a>
 <h1>Bienvenue</h1>
 <h2>Test</h2>
 
