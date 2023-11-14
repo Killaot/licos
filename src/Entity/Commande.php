@@ -18,8 +18,12 @@ class Commande
     #[ORM\Column]
     private ?int $NbrColis = null;
 
-    #[ORM\ManyToOne(inversedBy: 'laCommandes')]
-    private ?Client $leClient = null;
+
+
+    #[ORM\ManyToOne(inversedBy: 'Commande')]
+    private ?User $user = null;
+
+    
 
     public function getId(): ?int
     {
@@ -38,14 +42,15 @@ class Commande
         return $this;
     }
 
-    public function getLeClient(): ?Client
+
+    public function getUser(): ?User
     {
-        return $this->leClient;
+        return $this->user;
     }
 
-    public function setLeClient(?Client $leClient): static
+    public function setUser(?User $user): static
     {
-        $this->leClient = $leClient;
+        $this->user = $user;
 
         return $this;
     }

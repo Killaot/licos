@@ -1,13 +1,24 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<a href="{{ path('app_register') }}">Inscription</a>
-<a href="{{ path('app_login') }}">Connexion</a>
-<a href="{{ path('app_logout') }}">Déconexion</a>
-<a href="{{ path('app_forgot_password_request') }}">Mdp reset</a>
-<h1>Bienvenue</h1>
-<h2>Test</h2>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{ path('app_register') }}" class="btn btn-primary">Inscription</a>
+                        <a href="{{ path('app_login') }}" class="btn btn-success">Connexion</a>
+                        <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+                        <a href="{{ path('app_forgot_password_request') }}" class="btn btn-warning">Mdp reset</a>
 
+                        <h1 class="mt-4">Bienvenue</h1>
+                        <h2>Test</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
