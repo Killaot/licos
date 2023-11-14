@@ -12,7 +12,7 @@ use ApiPlatform\Metadata\ApiResource;
 #[ORM\Table(name: '`admin`')]
 #[ApiResource]
 class Admin
-{
+{ //faire une relation avec User j'avais la flemme
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -21,13 +21,12 @@ class Admin
     #[ORM\ManyToMany(targetEntity: Relais::class, mappedBy: 'lesAdmins')]
     private Collection $lesRelais;
 
-    #[ORM\ManyToMany(targetEntity: Client::class, inversedBy: 'lesAdmins')]
-    private Collection $lesClients;
+
 
     public function __construct()
     {
         $this->lesRelais = new ArrayCollection();
-        $this->lesClients = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -62,27 +61,5 @@ class Admin
         return $this;
     }
 
-    /**
-     * @return Collection<int, Client>
-     */
-    public function getLesClients(): Collection
-    {
-        return $this->lesClients;
-    }
-
-    public function addLesClient(Client $lesClient): static
-    {
-        if (!$this->lesClients->contains($lesClient)) {
-            $this->lesClients->add($lesClient);
-        }
-
-        return $this;
-    }
-
-    public function removeLesClient(Client $lesClient): static
-    {
-        $this->lesClients->removeElement($lesClient);
-
-        return $this;
-    }
+    
 }
