@@ -46,6 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $telephone = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $adresse = null;
+
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Ville $idVille = null;
+
     public function __construct()
     {
         $this->Commande = new ArrayCollection();
@@ -195,6 +201,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTelephone(string $telephone): static
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): static
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getIdVille(): ?Ville
+    {
+        return $this->idVille;
+    }
+
+    public function setIdVille(?Ville $idVille): static
+    {
+        $this->idVille = $idVille;
 
         return $this;
     }
