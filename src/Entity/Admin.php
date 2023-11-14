@@ -21,11 +21,13 @@ class Admin
     #[ORM\ManyToMany(targetEntity: Relais::class, mappedBy: 'lesAdmins')]
     private Collection $lesRelais;
 
-
+    #[ORM\OneToMany(mappedBy: 'unAdmin', targetEntity: User::class)]
+    private Collection $lesUsers;
 
     public function __construct()
     {
         $this->lesRelais = new ArrayCollection();
+        $this->lesUsers = new ArrayCollection();
 
     }
 
@@ -56,6 +58,36 @@ class Admin
     {
         if ($this->lesRelais->removeElement($lesRelai)) {
             $lesRelai->removeLesAdmin($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLesUsers(): Collection
+    {
+        return $this->lesUsers;
+    }
+
+    public function addLesUser(User $lesUser): static
+    {
+        if (!$this->lesUsers->contains($lesUser)) {
+            $this->lesUsers->add($lesUser);
+            $lesUser->setUnAdmin($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesUser(User $lesUser): static
+    {
+        if ($this->lesUsers->removeElement($lesUser)) {
+            // set the owning side to null (unless already changed)
+            if ($lesUser->getUnAdmin() === $this) {
+                $lesUser->setUnAdmin(null);
+            }
         }
 
         return $this;

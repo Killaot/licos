@@ -46,6 +46,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $telephone = null;
 
+    #[ORM\ManyToOne(inversedBy: 'lesUsers')]
+    private ?Admin $unAdmin = null;
+
     public function __construct()
     {
         $this->Commande = new ArrayCollection();
@@ -195,6 +198,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTelephone(string $telephone): static
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getUnAdmin(): ?Admin
+    {
+        return $this->unAdmin;
+    }
+
+    public function setUnAdmin(?Admin $unAdmin): static
+    {
+        $this->unAdmin = $unAdmin;
 
         return $this;
     }
