@@ -11,8 +11,13 @@
         "jquery": "^3.7.1",
         "node-sass": "^9.0.0",
         "regenerator-runtime": "^0.13.9",
+<<<<<<< HEAD
+        "sass": "^1.69.5",
+        "sass-loader": "^13.0.0",
+=======
         "sass": "^1.69.1",
         "sass-loader": "^13.3.2",
+>>>>>>> origin/KikiGod
         "ts-loader": "^9.4.4",
         "typescript": "^5.2.2",
         "vue": "^3",
@@ -30,5 +35,12 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
+<<<<<<< HEAD
+    "dependencies": {
+        "bootstrap-icons": "^1.11.1",
+        "leaflet": "^1.9.4"
+    }
+=======
     "packageManager": "yarn@4.0.2"
+>>>>>>> origin/KikiGod
 }
