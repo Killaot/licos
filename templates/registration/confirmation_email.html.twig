@@ -1,11 +1,27 @@
-<h1>Hi! Please confirm your email!</h1>
+{% extends 'base.html.twig' %}
 
-<p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
+{% block title %}Confirm Email{% endblock %}
 
-<p>
-    Cheers!
-</p>
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Hi! Please confirm your email!</h1>
+
+                        <p class="card-text">
+                            Please confirm your email address by clicking the following link: <br><br>
+                            <a href="{{ signedUrl|raw }}" class="btn btn-primary">Confirm my Email</a>.
+                            This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+                        </p>
+
+                        <p class="card-text">
+                            Cheers!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

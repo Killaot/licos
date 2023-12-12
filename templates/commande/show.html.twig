@@ -1,0 +1,40 @@
+{# templates/commande/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la commande{% endblock %}
+
+{% block body %}
+    <h1>Détails de la commande</h1>
+
+    <dl>
+        <dt>Numéro de commande</dt>
+        <dd>{{ commande.id }}</dd>
+
+        <dt>Nombre de colis</dt>
+        <dd>{{ commande.NbrColis }}</dd>
+
+        {# ... autres détails de la commande ... #}
+
+        <dt>
+            <button class="toggle-details">Afficher/Masquer les détails</button>
+        </dt>
+        <dd class="details" style="display: none;">
+            <ul>
+                {% for colis in commande.getColis() %}
+                    <li>{{ colis.numeroColis }} - Poids: {{ colis.poids }} kg</li>
+                {% endfor %}
+            </ul>
+        </dd>
+    </dl>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.toggle-details').click(function () {
+                $('.details').toggle();
+            });
+        });
+    </script>
+
+    <a href="{{ path('app_commande_index') }}">Retour à la liste des commandes</a>
+{% endblock %}

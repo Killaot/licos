@@ -26,9 +26,13 @@ class Ville
     #[ORM\OneToMany(mappedBy: 'laVille', targetEntity: Relais::class)]
     private Collection $lesRelais;
 
+    #[ORM\OneToMany(mappedBy: 'idVille', targetEntity: User::class)]
+    private Collection $users;
+
     public function __construct()
     {
         $this->lesRelais = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,6 +88,36 @@ class Ville
             // set the owning side to null (unless already changed)
             if ($lesRelai->getLaVille() === $this) {
                 $lesRelai->setLaVille(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->setIdVille($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getIdVille() === $this) {
+                $user->setIdVille(null);
             }
         }
 
