@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Map{% endblock %}
+
+{% block body %}
+
+    <div id="map" style="height: 491px; width: 617px;"></div>
+
+    {% set addressCoordinates = [
+        { "nom": "Colis PickUp - E.Leclerc", "address": "45 Av. de la Résistance, 22300 Lannion, France", "lat": 48.734406, "lng": -3.461953 },
+        { "nom": "Relais Pickup", "address": "5 Rue De Kerpabu, 22300 Lannion, France", "lat": 48.732904, "lng": -3.456175 },
+        { "nom": "Point Relais Cartes Grises Lannion", "address": "13 All. du Palais de Justice, 22300 Lannion, France", "lat": 48.728323, "lng": -3.453212 },
+        { "nom": "Point relais COLISSIMO", "address": "7 Park Frost, 22200 Pabu, France", "lat": 48.741567, "lng": -3.457924 }
+    ] %}
+
+    {% if addressCoordinates is defined %}
+        <script>
+            function initMap() {
+                const mapElement = document.getElementById('map');
+
+                const map = new google.maps.Map(mapElement, {
+                    center: { lat: 48.733, lng: -3.459 }, // Coordonnées pour centrer la carte
+                    zoom: 15 // Niveau de zoom initial
+                });
+
+                // Ajouter des marqueurs pour chaque adresse
+                {% for address in addressCoordinates %}
+                    marker = new google.maps.Marker({
+                        position: { lat: {{ address.lat }}, lng: {{ address.lng }} },
+                        map: map,
+                        title: "{{ address.address }}"
+                    });
+                    marker.addListener('click', function() {
+                        const infowindow = new google.maps.InfoWindow({
+                            content: "<strong>{{ address.nom }}</strong><br>{{ address.address }}"
+                        });
+                        infowindow.open(map, this);
+                    });
+                {% endfor %}
+            }
+
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTE3uCCa1cKf5uQ7KCRRg7IwlcQxFmKe4&callback=initMap" async defer></script>
+    {% endif %}
+{% endblock %}
