@@ -50,6 +50,8 @@ class CommandeController extends AbstractController
         ]);
     }
 
+    
+
     #[Route('/{id}/edit', name: 'app_commande_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
     {

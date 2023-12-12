@@ -6,6 +6,9 @@ use App\Repository\CommandeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\Colis;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 #[ApiResource]
@@ -27,7 +30,53 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\OneToMany(mappedBy: 'laCommande', targetEntity: Colis::class)]
+    private Collection $lesColis;
+
+    public function __construct()
+    {
+        $this->lesColis = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection<int, Colis>
+     */
+    public function getLesColis(): Collection
+    {
+        return $this->lesColis;
+    }
+
+    public function addLeColis(Colis $leColis): static
+    {
+        if (!$this->lesColis->contains($leColis)) {
+            $this->lesColis->add($leColis);
+            $leColis->setLaCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLeColis(Colis $leColis): static
+    {
+        if ($this->lesColis->removeElement($leColis)) {
+            // set the owning side to null (unless already changed)
+            if ($leColis->getLaCommande() === $this) {
+                $leColis->setLaCommande(null);
+            }
+        }
+
+        return $this;
+    }
     
+    // ...
+
+    /**
+     * @return Collection<int, Colis>
+     */
+    public function getColis(): Collection
+    {
+        return $this->lesColis;
+    }
 
     public function getId(): ?int
     {
