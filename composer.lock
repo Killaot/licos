@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "7838e3c4a606ca6579e2fc30b59ede51",
-=======
-    "content-hash": "2051e8c0d4d10c34c984d2f124a0922e",
->>>>>>> origin/KikiGod
+    "content-hash": "52b5101d862f42a819d38646779f653f",
     "packages": [
         {
             "name": "api-platform/core",
@@ -3213,7 +3209,6 @@
             "time": "2021-07-14T16:46:02+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
@@ -3238,7 +3233,26 @@
             "autoload": {
                 "files": [
                     "src/getallheaders.php"
-=======
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralph Khattar",
+                    "email": "ralph.khattar@gmail.com"
+                }
+            ],
+            "description": "A polyfill for getallheaders.",
+            "support": {
+                "issues": "https://github.com/ralouphie/getallheaders/issues",
+                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
+            },
+            "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
             "name": "sensio/framework-extra-bundle",
             "version": "v6.2.10",
             "source": {
@@ -3293,7 +3307,6 @@
                 },
                 "exclude-from-classmap": [
                     "/tests/"
->>>>>>> origin/KikiGod
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3302,18 +3315,6 @@
             ],
             "authors": [
                 {
-<<<<<<< HEAD
-                    "name": "Ralph Khattar",
-                    "email": "ralph.khattar@gmail.com"
-                }
-            ],
-            "description": "A polyfill for getallheaders.",
-            "support": {
-                "issues": "https://github.com/ralouphie/getallheaders/issues",
-                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
-            },
-            "time": "2019-03-08T08:55:37+00:00"
-=======
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
                 }
@@ -3328,7 +3329,6 @@
             },
             "abandoned": "Symfony",
             "time": "2023-02-24T14:57:12+00:00"
->>>>>>> origin/KikiGod
         },
         {
             "name": "symfony/asset",
