@@ -37,6 +37,10 @@ class Relais
         $this->lesCasiers = new ArrayCollection();
         $this->lesAdmins = new ArrayCollection();
     }
+    public function __toString(): string
+    {
+        return $this->laVille->getId().' '.$this->NombreCasier.' '.$this->Nom;
+    }
 
     public function getId(): ?int
     {
