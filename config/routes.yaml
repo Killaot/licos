@@ -14,5 +14,3 @@ traitement_formulaire:
 choisir_relais:
     path: '/choisir-relais'
     controller: App\Controller\ChoisirRelaisController::index
-
-// nezofhazoihtiouqzehtsuoghseriuodgtfiuzqgsertiuehydfu
