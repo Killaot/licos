@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}lesInfo{% endblock %}
+
+{% block body %}
+
+    <style>
+        .custom-background {
+            width: 1008px;
+            height: 873px;
+            background: #0E62BB;
+            margin: 50px auto;
+        }
+
+        .text-block {
+            display: flex;
+            width: 550px;
+            height: 92px;
+            flex-direction: column;
+            justify-content: center;
+            color: #D6D6D5;
+            text-align: center;
+            font-family: Inter;
+            font-size: 44px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin: 20px auto;
+        }
+    </style>
+
+    <div class="custom-background">
+        <div class="text-block">
+                <form action="{{ path('traitement_formulaire') }}" method="post">
+                    <label for="nomUtilisateur">Pseudo Destinataire :</label>
+                    <input type="text" id="nomUtilisateur" name="nomUtilisateur">
+
+                    <label for="volume">Volume :</label>
+                    <input type="text" id="ville" name="ville">
+
+                    <label for="poids">Poids :</label>
+                    <input type="text" id="adresse" name="adresse">
+
+                    <label for="destination">Destination :</label>
+                    <input type="text" id="codePostal" name="codePostal">
+
+                    <input type="submit" value="Suivant">
+                </form>
+        </div>
+    </div>
+{% endblock %}
