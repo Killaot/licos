@@ -14,7 +14,7 @@ class Mail
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $destinataire = null;
+    private ?string $sujet = null;
 
     #[ORM\Column(length: 255)]
     private ?string $contenue = null;
@@ -27,14 +27,14 @@ class Mail
         return $this->id;
     }
 
-    public function getDestinataire(): ?string
+    public function getsujet(): ?string
     {
-        return $this->destinataire;
+        return $this->sujet;
     }
 
-    public function setDestinataire(string $destinataire): static
+    public function setsujet(string $sujet): static
     {
-        $this->destinataire = $destinataire;
+        $this->sujet = $sujet;
 
         return $this;
     }

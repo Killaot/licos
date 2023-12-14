@@ -44,7 +44,7 @@ class MailController extends AbstractController
             $email = (new \Symfony\Component\Mime\Email())
                 ->from(new \Symfony\Component\Mime\Address($mail->getEnvoyeur()->getEmail(), 'Sender Name'))
                 ->to('licos@gmail.com')
-                ->subject($mail->getDestinataire())
+                ->subject($mail->getsujet())
                 ->text($mail->getContenue());
 
             $mailer->send($email);
