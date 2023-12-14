@@ -63,7 +63,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>NbrColis</th>
                     <th>Date</th>
                     <th>Actions</th>
@@ -72,12 +71,10 @@
             <tbody>
                 {% for commande in commandes %}
                     <tr>
-                        <td>{{ commande.id }}</td>
                         <td>{{ commande.NbrColis }}</td>
                         <td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
                         <td>
                             <a href="{{ path('app_commande_show', {'id': commande.id}) }}">Show</a>
-                            <a href="{{ path('app_commande_edit', {'id': commande.id}) }}">Edit</a>
                         </td>
                     </tr>
                 {% else %}
@@ -88,7 +85,6 @@
             </tbody>
         </table>
 
-        <a href="{{ path('app_commande_new') }}">Create new</a>
     </body>
 
     </html>

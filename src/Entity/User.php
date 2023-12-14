@@ -52,9 +52,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Ville $idVille = null;
 
+    #[ORM\OneToMany(mappedBy: 'envoyeur', targetEntity: Mail::class)]
+    private Collection $mails;
+
     public function __construct()
     {
         $this->Commande = new ArrayCollection();
+        $this->mails = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -225,6 +229,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIdVille(?Ville $idVille): static
     {
         $this->idVille = $idVille;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mail>
+     */
+    public function getMails(): Collection
+    {
+        return $this->mails;
+    }
+
+    public function addMail(Mail $mail): static
+    {
+        if (!$this->mails->contains($mail)) {
+            $this->mails->add($mail);
+            $mail->setEnvoyeur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMail(Mail $mail): static
+    {
+        if ($this->mails->removeElement($mail)) {
+            // set the owning side to null (unless already changed)
+            if ($mail->getEnvoyeur() === $this) {
+                $mail->setEnvoyeur(null);
+            }
+        }
 
         return $this;
     }
