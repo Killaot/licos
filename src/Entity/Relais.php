@@ -39,7 +39,7 @@ class Relais
     }
     public function __toString(): string
     {
-        return $this->laVille->getId().' '.$this->NombreCasier.' '.$this->Nom;
+        return $this->laVille.' '.$this->NombreCasier.' '.$this->Nom;
     }
 
     public function getId(): ?int

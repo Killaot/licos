@@ -52,6 +52,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoRoute('Retour sur le site', 'fas fa-home', 'app_home');
         yield MenuItem::linkToDashboard('Tableau de bord', 'fa-solid fa-chalkboard');
         yield MenuItem::linkToCrud('Gestion des centres', 'fas fa-map-marker-alt', Relais::class);
-        yield MenuItem::linkToCrud('Support Client', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('Voir les clients', 'fas fa-user', User::class);
     }
 }
