@@ -2,10 +2,17 @@ controllers:
     resource: ../src/Controller/
     type: attribute
 
+app_home:
+    path: '/'
+    controller: App\Controller\HomeController::index
 
-app_infoEnvoie:
-    path: '/infoEnvoie'
-    controller: App\Controller\InfoEnvoieController::index
+app_map:
+    path: '/map'
+    controller: App\Controller\MapController::index
+
+trouverRelais:
+    path: '/app_trouverRelais'
+    controller: App\Controller\MapController::infoRelais
 
 traitement_formulaire:
     path: '/traitement-formulaire'
@@ -14,3 +21,31 @@ traitement_formulaire:
 choisir_relais:
     path: '/choisir-relais'
     controller: App\Controller\ChoisirRelaisController::index
+
+recapituler_colis:
+    path: '/recapituler-colis'
+    controller: App\Controller\RecapitulerController::index
+
+choisirPointRelais:
+    path: '/choisir-point-relais'
+    controller: App\Controller\ChoisirRelaisController::index
+
+traitement_Point_Relais:
+    path: '/traitement-point-relais'
+    controller: App\Controller\ChoisirRelaisController::traitementPointRelais
+
+recapitulatif:
+    path: '/recapitulatif'
+    controller: App\Controller\VotreController::votreFonction
+
+app_consult:
+    path: '/consult'
+    controller: App\Controller\NavBarController::consult
+
+app_consulter_colis:
+    path: '/consulterColis'
+    controller: App\Controller\ConsulterColisController::index
+
+app_traitement_consulter_colis:
+    path: '/traitement-consulter-colis'
+    controller: App\Controller\ConsulterColisController::traitementConsulterColis

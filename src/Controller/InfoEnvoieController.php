@@ -12,23 +12,35 @@ class InfoEnvoieController extends AbstractController
     #[Route('/infoEnvoie', name: 'app_infoEnvoie')]
     public function index(): Response
     {
-        return $this->render('client/infoEnvoie.html.twig', [
+        return $this->render('home/infoEnvoie.html.twig', [
             'controller_name' => 'InfoEnvoieController',
         ]);
     }
 
     #[Route('/traitement-formulaire', name: 'traitement_formulaire')]
-    public function traitementFormulaire(Request $request): Response
-    {
+public function traitementFormulaire(Request $request): Response
+{
+    if ($request->isMethod('POST')) {
+        // Récupération des données du formulaire
         $nomUtilisateur = $request->request->get('nomUtilisateur');
-        $ville = $request->request->get('ville');
-        $adresse = $request->request->get('adresse');
-        $codePostal = $request->request->get('codePostal');
+        $volume = $request->request->get('volume');
+        $poids = $request->request->get('poids');
+        $destination = $request->request->get('destination');
 
-        // Faire quelque chose avec ces données (par exemple, les afficher)
-        dump($nomUtilisateur, $ville, $adresse, $codePostal);
+        $nbrColis = $request->request->get('nbrColis'); // Assurez-vous que 'nbrColis' correspond au nom de votre champ de formulaire
 
-        // Rediriger vers une autre page après la soumission du formulaire
-        return $this->redirectToRoute('choisir_relais'); // Redirection vers la route choisir_relais
+        // Stockage temporaire des données dans la session
+        $request->getSession()->set('colis_info', [
+            'nomUtilisateur' => $nomUtilisateur,
+            'volume' => $volume,
+            'poids' => $poids,
+            'destination' => $destination,
+            'nbrColis' => $nbrColis,
+        ]);
+
+        return $this->redirectToRoute('choisir_relais');
     }
+
+    return $this->render('home/infoEnvoie.html.twig');
+}
 }

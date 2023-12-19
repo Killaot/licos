@@ -33,6 +33,18 @@ class Colis
     #[ORM\JoinColumn(nullable: false)]
     private ?Casier $leCasier = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $destinataire = null;
+
+    #[ORM\Column]
+    private ?float $volume = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $destination = null;
+
+    #[ORM\ManyToOne(inversedBy: 'leColis')]
+    private ?Relais $leRelais = null;
+
     public function __construct()
     {
         $this->lesNotifications = new ArrayCollection();
@@ -117,6 +129,54 @@ class Colis
     public function setLeCasier(?Casier $leCasier): static
     {
         $this->leCasier = $leCasier;
+
+        return $this;
+    }
+
+    public function getDestinataire(): ?string
+    {
+        return $this->destinataire;
+    }
+
+    public function setDestinataire(string $destinataire): static
+    {
+        $this->destinataire = $destinataire;
+
+        return $this;
+    }
+
+    public function getVolume(): ?float
+    {
+        return $this->volume;
+    }
+
+    public function setVolume(float $volume): static
+    {
+        $this->volume = $volume;
+
+        return $this;
+    }
+
+    public function getDestination(): ?string
+    {
+        return $this->destination;
+    }
+
+    public function setDestination(string $destination): static
+    {
+        $this->destination = $destination;
+
+        return $this;
+    }
+
+    public function getLeRelais(): ?Relais
+    {
+        return $this->leRelais;
+    }
+
+    public function setLeRelais(?Relais $leRelais): static
+    {
+        $this->leRelais = $leRelais;
 
         return $this;
     }

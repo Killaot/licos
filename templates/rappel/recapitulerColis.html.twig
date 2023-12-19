@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Récapitulatif du Colis{% endblock %}
+
+{% block body %}
+    <style>
+        .custom-background {
+            width: 1008px;
+            height: 873px;
+            background: #0E62BB;
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-block {
+            width: 900px;
+            color: #D6D6D5;
+            text-align: left;
+            font-family: Inter;
+            font-size: 44px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .label-group {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        label {
+            width: 45%;
+            text-align: left;
+        }
+
+        .envoyerBouton {
+            width: 458px;
+            height: 139px;
+            border: 3px solid #000;
+            background: #0E62BB;
+            box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25);
+            color: #D6D6D5;
+            text-align: center;
+            font-family: Inter;
+            font-size: 44px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 139px; /* Ajuste la hauteur de ligne pour centrer verticalement le texte */
+            margin: 20px auto; /* Centre le bouton horizontalement */
+            display: flex;
+            align-items: center; /* Centre verticalement le contenu */
+            justify-content: center; /* Centre horizontalement le contenu */
+        }
+
+
+    </style>
+    <div class="custom-background">
+        <div class="text-block">
+            <div class="label-group">
+                <label><strong>Relais:</strong></label>
+                <label>{{ relais.nom }}</label>
+            </div>
+            <div class="label-group">
+                <label><strong>Destinataire:</strong></label>
+                <label>{{ colis.destinataire }}</label>
+            </div>
+            <div class="label-group">
+                <label><strong>Poids:</strong></label>
+                <label>{{ colis.poids }}</label>
+            </div>
+            <div class="label-group">
+                <label><strong>Volume:</strong></label>
+                <label>{{ colis.volume }}</label>
+            </div>
+            <div class="label-group">
+                <label><strong>Numéro de colis:</strong></label>
+                <label>{{ colis.numeroColis }}</label>
+            </div>
+            <div class="label-group">
+                <label><strong>Destination:</strong></label>
+                <label>{{ colis.destination }}</label>
+            </div>
+            <a href="{{ path('app_home') }}" class="envoyerBouton">Valider</a>
+        </div>
+    </div>
+{% endblock %}

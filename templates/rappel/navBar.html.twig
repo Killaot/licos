@@ -51,25 +51,42 @@
             max-width: 30px;
         }
 
-        .navbar li:nth-child(4) a {
+        .navbar li:last-child a {
             background: #103A94;
             box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.63);
             padding: 10px 30px; 
             border-radius: 0px; 
         }
+        
     </style>
-
+    
     <nav>
         <ul class="navbar">
-            <li>
-                <a href="#">
-                    <img src="../../assets/images/logo.png" alt="Logo">
-                    Licos
-                </a>
-            </li>
-            <li><a href="#">Vos colis</a></li>
-            <li><a href="#">Contactez nous</a></li>
-            <li><a href="#">Profil</a></li>
+            {% if not app.user %}
+                <li>
+                    <a href="{{ path('app_home') }}">
+                        <img src="../../assets/images/logo.png" alt="Logo">
+                        Licos
+                    </a>
+                </li>
+                <li><a href="#">Contactez nous</a></li>
+                <li><a href="{{ path('app_register') }}">Inscription</a></li>
+                <li><a href="{{ path('app_login') }}">Connexion</a></li>
+            {% endif %}
+                    
+                    {# Lien pour l'utilisateur connecté #}
+            {% if app.user %}
+                <li>
+                    <a href="{{ path('app_home') }}">
+                        <img src="../../assets/images/logo.png" alt="Logo">
+                        Licos
+                    </a>
+                </li>
+                <li><a href="{{ path('app_consult') }}">Vos colis</a></li>
+                <li><a href="#">Contactez nous</a></li>
+                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                <li><a href="{{ path('app_user_show', {'id': app.user.id}) }}" >Profil</a></li>
+            {% endif %}            
         </ul>
     </nav>
 {% endblock %}

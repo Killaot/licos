@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}envoieColis{% endblock %}
+{% block title %}consulter{% endblock %}
 
 {% block body %}
 
@@ -46,25 +46,19 @@
             align-items: center; /* Centre verticalement le contenu */
             justify-content: center; /* Centre horizontalement le contenu */
         }
-
-        .laMap {
-            border: 3px solid #000;
-            box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.25);
-            margin: auto;
-            width: 61.2%;
-        }
     </style>
 
-    <div class="custom-background">
-        <div class="text-block">
-            Nos points relais
-        </div>
-        <div class="laMap">
-            {% include 'rappel/trouverRelais.html.twig' %}
-        </div>
-        <!-- Ajout de la balise <a> avec le lien vers infoEnvoie.html.twig -->
-        <a href="{{ path('app_infoEnvoie') }}" class="envoyerBouton">Envoyer un colis</a>
+
+    <div>
+        <h2>Consulter un colis</h2>
+        <form action="{{ path('app_traitement_consulter_colis') }}" method="post">
+            <label for="numero_colis">Entrez votre numéro de colis :</label>
+            <input type="text" id="numero_colis" name="numero_colis">
+            <input type="submit" value="Consulter">
+        </form>
     </div>
+
+
 
 
 {% endblock %}

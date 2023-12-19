@@ -6,12 +6,19 @@
 
     <div id="map" style="height: 491px; width: 617px;"></div>
 
-    {% set addressCoordinates = [
-        { "nom": "Colis PickUp - E.Leclerc", "address": "45 Av. de la Résistance, 22300 Lannion, France", "lat": 48.734406, "lng": -3.461953 },
-        { "nom": "Relais Pickup", "address": "5 Rue De Kerpabu, 22300 Lannion, France", "lat": 48.732904, "lng": -3.456175 },
-        { "nom": "Point Relais Cartes Grises Lannion", "address": "13 All. du Palais de Justice, 22300 Lannion, France", "lat": 48.728323, "lng": -3.453212 },
-        { "nom": "Point relais COLISSIMO", "address": "7 Park Frost, 22200 Pabu, France", "lat": 48.741567, "lng": -3.457924 }
-    ] %}
+    {% set addressCoordinates = [] %}
+
+    {% if lesRelais is defined and lesRelais is not empty %}
+        {% for unRelais in lesRelais %}
+            {% set coordinates = {
+                'address': unRelais.address,
+                'nom': unRelais.nom,
+                'lat': unRelais.lat, 
+                'lng': unRelais.lgn,
+            } %}
+            {% set addressCoordinates = addressCoordinates|merge([coordinates]) %}
+        {% endfor %}
+    {% endif %}
 
     {% if addressCoordinates is defined %}
         <script>
@@ -22,6 +29,9 @@
                     center: { lat: 48.733, lng: -3.459 }, // Coordonnées pour centrer la carte
                     zoom: 15 // Niveau de zoom initial
                 });
+
+                const nomPointRelaisInput = document.getElementById('nomPointRelais');
+                const adressePointRelaisInput = document.getElementById('adressePointRelais');
 
                 // Ajouter des marqueurs pour chaque adresse
                 {% for address in addressCoordinates %}
@@ -35,8 +45,16 @@
                             content: "<strong>{{ address.nom }}</strong><br>{{ address.address }}"
                         });
                         infowindow.open(map, this);
+                        nomPointRelaisInput.value = "{{ address.nom }}";
+                        adressePointRelaisInput.value = "{{ address.address }}";
                     });
+
                 {% endfor %}
+                // Fonction pour soumettre le formulaire quand l'utilisateur clique sur le bouton "Confirmer"
+                const confirmerButton = document.querySelector('.envoyerBouton');
+                confirmerButton.addEventListener('click', function() {
+                    document.getElementById('pointRelaisForm').submit();
+                });
             }
 
         </script>

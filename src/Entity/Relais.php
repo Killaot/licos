@@ -32,10 +32,23 @@ class Relais
     #[ORM\ManyToMany(targetEntity: Admin::class, inversedBy: 'lesRelais')]
     private Collection $lesAdmins;
 
+    #[ORM\Column(length: 255)]
+    private ?string $address = null;
+
+    #[ORM\Column]
+    private ?float $lat = null;
+
+    #[ORM\Column]
+    private ?float $lgn = null;
+
+    #[ORM\OneToMany(mappedBy: 'leRelais', targetEntity: colis::class)]
+    private Collection $leColis;
+
     public function __construct()
     {
         $this->lesCasiers = new ArrayCollection();
         $this->lesAdmins = new ArrayCollection();
+        $this->leColis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -129,6 +142,72 @@ class Relais
     public function removeLesAdmin(Admin $lesAdmin): static
     {
         $this->lesAdmins->removeElement($lesAdmin);
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): static
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(float $lat): static
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getLgn(): ?float
+    {
+        return $this->lgn;
+    }
+
+    public function setLgn(float $lgn): static
+    {
+        $this->lgn = $lgn;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, colis>
+     */
+    public function getLeColis(): Collection
+    {
+        return $this->leColis;
+    }
+
+    public function addLeColi(colis $leColi): static
+    {
+        if (!$this->leColis->contains($leColi)) {
+            $this->leColis->add($leColi);
+            $leColi->setLeRelais($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLeColi(colis $leColi): static
+    {
+        if ($this->leColis->removeElement($leColi)) {
+            // set the owning side to null (unless already changed)
+            if ($leColi->getLeRelais() === $this) {
+                $leColi->setLeRelais(null);
+            }
+        }
 
         return $this;
     }
