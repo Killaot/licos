@@ -20,9 +20,8 @@ class RelaisCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('...')
-            ->setDateFormat('...')
-            
+            ->setEntityLabelInSingular('Relai')
+            ->setEntityLabelInPlural('Relais')
         ;
     }
 
